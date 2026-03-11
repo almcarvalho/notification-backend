@@ -1,0 +1,52 @@
+﻿generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MessageStatus {
+  pending
+  sent
+  failure
+}
+
+enum MessageType {
+  discord
+  email
+  whatsapp
+  sms
+  phoneCall
+}
+
+model Message {
+  id             String        @id @default(uuid())
+  createdAt      DateTime      @default(now())
+  status         MessageStatus @default(pending)
+  sendDate       DateTime?
+  title          String
+  text           String
+  type           MessageType
+  phone          String?
+  email          String?
+  discordWebhook String?
+  apiKeyId       Int?
+  apiKey         ApiKey?       @relation(fields: [apiKeyId], references: [id])
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model ApiKey {
+  id            Int       @id @default(autoincrement())
+  keyHash       String
+  limitPerMinute Int      @default(1)
+  lastSend      DateTime?
+  totalMessages Int       @default(0)
+  name          String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  messages      Message[]
+}
