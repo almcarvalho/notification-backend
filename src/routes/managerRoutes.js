@@ -9,13 +9,91 @@ const router = Router();
  * @swagger
  * /manager/key:
  *   post:
- *     summary: Cadastra nova API key (habilitado por IS_MANAGER_ON=true)
+ *     summary: Cadastra uma nova API key
+ *     description: |
+ *       Cria uma chave de acesso para autenticação das rotas protegidas por API key.
+ *       Esta rota só funciona quando a variável de ambiente `IS_MANAGER_ON=true`.
+ *       Quando `IS_MANAGER_ON=false`, retorna `401`.
  *     tags: [Manager]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [name, limit]
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Nome da integração/cliente dono da chave.
+ *                 example: "cliente-a"
+ *               limit:
+ *                 type: integer
+ *                 minimum: 1
+ *                 description: Quantidade máxima de mensagens por minuto para essa key.
+ *                 example: 10
+ *           examples:
+ *             default:
+ *               summary: Exemplo de criação
+ *               value:
+ *                 name: "cliente-a"
+ *                 limit: 10
  *     responses:
  *       201:
- *         description: API key criada
+ *         description: API key criada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "Sucesso"
+ *                 id:
+ *                   type: integer
+ *                   example: 1
+ *                 name:
+ *                   type: string
+ *                   example: "cliente-a"
+ *                 limitPerMinute:
+ *                   type: integer
+ *                   example: 10
+ *                 totalMessages:
+ *                   type: integer
+ *                   example: 0
+ *                 createdAt:
+ *                   type: string
+ *                   format: date-time
+ *                 key:
+ *                   type: string
+ *                   description: Chave gerada (exibida apenas na criação).
+ *                   example: "4b6eb0f2-0672-4b9a-b056-f0ffba8f1f7d"
+ *       400:
+ *         description: Dados inválidos no corpo da requisição
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "Erro"
+ *                 message:
+ *                   type: string
+ *                   example: "Campo 'limit' deve ser inteiro maior que 0."
  *       401:
- *         description: Não autorizado
+ *         description: Rota desabilitada por configuração (`IS_MANAGER_ON=false`)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "Erro"
+ *                 message:
+ *                   type: string
+ *                   example: "Não autorizado. IS_MANAGER_ON=false."
  */
 router.post("/manager/key", managerFlagGuard, asyncHandler(async (req, res) => {
   const { name, limit } = req.body;
