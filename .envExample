@@ -1,0 +1,30 @@
+# =========================
+# DATABASE
+# =========================
+DATABASE_URL=postgresql://user:password@localhost:5432/database
+
+# =========================
+# EMAIL
+# =========================
+EMAIL_FROM=seu-email@dominio.com
+
+# =========================
+# FEATURE FLAGS
+# =========================
+IS_MANAGER_ON=true
+
+# =========================
+# RESEND (EMAIL SERVICE)
+# =========================
+RESEND_API_KEY=your_resend_api_key_here
+
+# =========================
+# WHATSAPP API
+# =========================
+WHATSAPP_API_KEY=your_whatsapp_api_key_here
+WHATSAPP_API_URL=http://192.145.33.14:3000
+
+# =========================
+# ADMIN
+# =========================
+ADMIN_WHATSAPP_TO=5511999999999
