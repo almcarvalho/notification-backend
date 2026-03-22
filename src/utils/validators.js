@@ -2,8 +2,6 @@
   discord: ["discordWebhook"],
   email: ["email"],
   whatsapp: ["phone"],
-  sms: ["phone"],
-  phoneCall: ["phone"],
 };
 
 const ALLOWED_TYPES = new Set(Object.keys(REQUIRED_BY_TYPE));
@@ -20,7 +18,7 @@ export function validateMessagePayload(payload) {
   }
 
   if (!payload?.type || !ALLOWED_TYPES.has(payload.type)) {
-    errors.push("Campo 'type' inválido. Tipos: discord, email, whatsapp, sms, phoneCall.");
+    errors.push("Campo 'type' inválido. Tipos: discord, email, whatsapp.");
   }
 
   if (payload?.type && REQUIRED_BY_TYPE[payload.type]) {

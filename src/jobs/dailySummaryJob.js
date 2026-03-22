@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/pt-br.js";
 import prisma from "../config/prisma.js";
 import env from "../config/env.js";
-import { sendWhatsapp } from "../services/senders/twilioSender.js";
+import { sendWhatsapp } from "../services/senders/whatsappSender.js";
 
 dayjs.locale("pt-br");
 

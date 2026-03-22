@@ -22,7 +22,6 @@
     "resend": "^4.3.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "twilio": "^5.4.5",
     "uuid": "^11.1.0"
   },
   "devDependencies": {

@@ -1,13 +1,11 @@
 ﻿import { sendDiscord } from "./senders/discordSender.js";
 import { sendEmail } from "./senders/emailSender.js";
-import { sendPhoneCall, sendSms, sendWhatsapp } from "./senders/twilioSender.js";
+import { sendWhatsapp } from "./senders/whatsappSender.js";
 
 const senders = {
   discord: sendDiscord,
   email: sendEmail,
   whatsapp: sendWhatsapp,
-  sms: sendSms,
-  phoneCall: sendPhoneCall,
 };
 
 export function getSenderByType(type) {

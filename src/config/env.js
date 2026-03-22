@@ -12,12 +12,9 @@ const env = {
   cronDailySummary: process.env.CRON_DAILY_SUMMARY || "0 20 * * *",
   jobTimezone: process.env.JOB_TIMEZONE || "America/Sao_Paulo",
 
-  twilio: {
-    accountSid: process.env.TWILIO_ACCOUNT_SID,
-    authToken: process.env.TWILIO_AUTH_TOKEN,
-    whatsappFrom: process.env.TWILIO_WHATSAPP_FROM,
-    smsFrom: process.env.TWILIO_SMS_FROM,
-    callFrom: process.env.TWILIO_CALL_FROM,
+  whatsappApi: {
+    url: process.env.WHATSAPP_API_URL,
+    apiKey: process.env.WHATSAPP_API_KEY,
   },
 
   resendApiKey: process.env.RESEND_API_KEY,

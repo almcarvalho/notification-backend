@@ -13,9 +13,7 @@ Backend em Node.js com PostgreSQL (Prisma), autenticação por API key, processa
 
 ## Tipos de envio
 
-- `whatsapp` via Twilio
-- `sms` via Twilio
-- `phoneCall` via Twilio
+- `whatsapp` via API HTTP externa
 - `email` via Resend
 - `discord` via webhook do Discord
 
@@ -30,7 +28,7 @@ Backend em Node.js com PostgreSQL (Prisma), autenticação por API key, processa
   - `sendDate`
   - `title`
   - `text`
-  - `type` (`discord`, `email`, `whatsapp`, `sms`, `phoneCall`)
+  - `type` (`discord`, `email`, `whatsapp`)
   - opcionais: `phone`, `email`, `discordWebhook`
 
 - `ApiKey`
@@ -94,7 +92,7 @@ curl -X POST http://localhost:3000/message \
     "title":"Aviso",
     "text":"Teste de envio",
     "type":"whatsapp",
-    "phone":"whatsapp:+5511999999999"
+    "phone":"5511999999999"
   }'
 ```
 
@@ -109,3 +107,4 @@ curl "http://localhost:3000/message?id=<MESSAGE_ID>"
 - Processamento é assíncrono: a rota POST apenas enfileira no banco.
 - Mensagens com status `pending` ou `failure` são reprocessadas pelo job.
 - Se `IS_MANAGER_ON=false`, rotas de manager retornam `401`.
+- Para WhatsApp, configure `WHATSAPP_API_URL` e `WHATSAPP_API_KEY` no `.env`.

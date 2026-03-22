@@ -19,10 +19,10 @@ const options = {
             text: { type: "string", example: "Seu pedido foi aprovado." },
             type: {
               type: "string",
-              enum: ["discord", "email", "whatsapp", "sms", "phoneCall"],
+              enum: ["discord", "email", "whatsapp"],
               example: "whatsapp",
             },
-            phone: { type: "string", example: "whatsapp:+5511999999999" },
+            phone: { type: "string", example: "5511999999999" },
             email: { type: "string", example: "user@email.com" },
             discordWebhook: { type: "string", example: "https://discord.com/api/webhooks/..." },
           },
