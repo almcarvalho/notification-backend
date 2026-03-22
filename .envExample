@@ -6,12 +6,12 @@ DATABASE_URL=postgresql://user:password@localhost:5432/database
 # =========================
 # EMAIL
 # =========================
-EMAIL_FROM=seu-email@dominio.com
+EMAIL_FROM=atendimento@dominio.com
 
 # =========================
 # FEATURE FLAGS
 # =========================
-IS_MANAGER_ON=true
+IS_MANAGER_ON=false
 
 # =========================
 # RESEND (EMAIL SERVICE)
